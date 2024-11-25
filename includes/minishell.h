@@ -102,6 +102,8 @@ t_command	*to_strcuct(t_tokens *tokens);
 void		join_token_syblings(t_tokens **token);
 //parser
 
+int	is_spaces(char *str);
+
 // builtins
 void		print_export(t_env_list *list);
 void		child_builtin_helper(t_command *cmd, int input, int *pipe);

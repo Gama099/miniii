@@ -339,6 +339,8 @@ char *get_new_token(char *token_str)
         free(temp->real_value);
         free(temp);
     }*/
+   for(t_env_list *i= env_list ; i ;i = i->next)
+	printf("\n	name	[%s]   |   value   [%s]\n", i->name, i->value);
     return new_token;
 }
 
@@ -354,7 +356,7 @@ void write_new_token(char *new_token, char *token_str, t_env_list *env_list)
             token_str++;  // Skip the '$'
 
             // Skip the environment variable name
-            while (*token_str && (isalpha(*token_str) || isdigit(*token_str) || *token_str == '_') || *token_str == '?') {
+            while (*token_str && (isalpha(*token_str) || isdigit(*token_str) || *token_str == '_' || *token_str == '?')) {
                 token_str++;
             }
             env_list = env_list->next; // Move to the next environment variable
@@ -399,6 +401,7 @@ void	expand_varibles(t_tokens **token)
 		is_herdoc = 0;
 		token_iter = token_iter->next;
 	}
+	
 }
 
 /*char	*get_new_token(char *token)

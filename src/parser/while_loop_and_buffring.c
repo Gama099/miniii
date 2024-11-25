@@ -139,6 +139,7 @@ int main(int ac, char **av, char **envp)
 		 printf("tokenaziatoin:\n");
 		 for (t_tokens *i = tokens; i; i = i->next)
              {
+				printf("\t\tadress print = %p\n", i);
 		 		printf("\t\ttoken [%s]\n", i->token);
 		 		printf("\t\t expnad [%d]\n", i->expand_env);
 		 		printf("\t\t  join[%d]\n", i->join_with_next);
@@ -151,6 +152,7 @@ int main(int ac, char **av, char **envp)
 		 printf("expand:\n");
 		  for (t_tokens *i = tokens; i; i = i->next)
              {
+				printf("\t\tadress print = %p\n", i);
 		 		printf("\t\ttoken [%s]\n", i->token);
 		 		printf("\t\t expnad [%d]\n", i->expand_env);
 		 		printf("\t\t  join[%d]\n", i->join_with_next);
@@ -163,18 +165,20 @@ int main(int ac, char **av, char **envp)
 		printf("joining:\n");
 		 for (t_tokens *i = tokens; i; i = i->next)
              {
+				printf("\t\tadress print = %p\n", i);
 		 		printf("\t\ttoken [%s]\n", i->token);
 		 		printf("\t\t expnad [%d]\n", i->expand_env);
 		 		printf("\t\t  join[%d]\n", i->join_with_next);
 		 		printf("\t\t   qoute[%d]\n", i->qoute_type);
 		 		printf("\t\t    type[%s]\n", i->tokenType);
 		 	}
-
+		// this step the token can be nulled so i have to check it
 		parser(&tokens);
 
 		printf("parsing:\n");
 		 for (t_tokens *i = tokens; i; i = i->next)
              {
+				printf("\t\tadress print = %p\n", i);
 		 		printf("\t\ttoken [%s]\n", i->token);
 		 		printf("\t\t expnad [%d]\n", i->expand_env);
 		 		printf("\t\t  join[%d]\n", i->join_with_next);
@@ -186,6 +190,7 @@ int main(int ac, char **av, char **envp)
 		printf("befooooooore:\n");
 		 for (t_tokens *i = tokens; i; i = i->next)
              {
+				printf("\t\tadress print = %p\n", i);
 		 		printf("\t\ttoken [%s]\n", i->token);
 		 		printf("\t\t expnad [%d]\n", i->expand_env);
 		 		printf("\t\t  join[%d]\n", i->join_with_next);
@@ -198,6 +203,7 @@ int main(int ac, char **av, char **envp)
 		printf("aaaaaaaaaaaaaafter:\n");
 		 for (t_tokens *i = tokens; i; i = i->next)
              {
+				printf("\t\tadress print = %p\n", i);
 		 		printf("\t\ttoken [%s]\n", i->token);
 		 		printf("\t\t expnad [%d]\n", i->expand_env);
 		 		printf("\t\t  join[%d]\n", i->join_with_next);
@@ -209,7 +215,7 @@ int main(int ac, char **av, char **envp)
 			if (status == 0)
 			{
 				cmd = to_strcuct(tokens);
-				print_command(cmd);
+				//print_command(cmd);
 				//sleep(10);
 				status = ft_herdoc(cmd);
 				if (status == 0)
