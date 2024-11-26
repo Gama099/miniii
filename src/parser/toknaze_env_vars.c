@@ -1,6 +1,6 @@
 #include "../../includes/minishell.h"
 
-static void typing_nodes(t_tokens *iter, t_tokens **list)
+static void	typing_nodes(t_tokens *iter, t_tokens **list)
 {
     t_tokens *current;
 
@@ -20,10 +20,10 @@ static void typing_nodes(t_tokens *iter, t_tokens **list)
 
 void tokenaze_var(t_tokens **tokens)
 {
-    t_tokens *iter = *tokens;
-    t_tokens *prev = NULL;
-	t_tokens *tmp_holder = NULL;
-	t_tokens *to_free;
+    t_tokens	*iter = *tokens;
+    t_tokens	*prev = NULL;
+	t_tokens	*tmp_holder = NULL;
+	t_tokens	*to_free;
 
     while (iter)
 	{
@@ -31,12 +31,11 @@ void tokenaze_var(t_tokens **tokens)
 		{
             tmp_holder = getTokens(ft_strdup(iter->token));
 
-            if (!tmp_holder) {
+            if (!tmp_holder)
+			{
                 printf("Error: Variable expansion failed.\n");
                 return;
             }
-
-            // Update the token types and connect the new tokens
             typing_nodes(iter, &tmp_holder);
 
             // Reconnect the list

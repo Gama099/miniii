@@ -339,8 +339,8 @@ char *get_new_token(char *token_str)
         free(temp->real_value);
         free(temp);
     }*/
-   for(t_env_list *i= env_list ; i ;i = i->next)
-	printf("\n	name	[%s]   |   value   [%s]\n", i->name, i->value);
+//    for(t_env_list *i= env_list ; i ;i = i->next)
+// 	printf("\n	name	[%s]   |   value   [%s]\n", i->name, i->value);
     return new_token;
 }
 
@@ -401,53 +401,35 @@ void	expand_varibles(t_tokens **token)
 		is_herdoc = 0;
 		token_iter = token_iter->next;
 	}
-	
+	clean_list_spaces(token);
 }
 
-/*char	*get_new_token(char *token)
+void	clean_list_spaces(t_tokens **token)
 {
-	char		*token_iter;
-	int			count_token_len;
-	t_env_var	*paste_list;
+	t_tokens	*current;
+	t_tokens	*prev;
+	t_tokens	*to_free;
+	if (!*token || !token)
+		return ;
 
-	paste_list = NULL;
-	token_iter = token;
-	while (*token_iter)
+	current = *token;
+	prev = NULL;
+	while (current)
 	{
-		if (*token_iter == '$' && *(token_iter + 1) == '?')
-			printf("to handle retuning last state\n");
-		else if (*token_iter == '$' && *(token_iter + 1))
+		if (!is_spaces(current->token) && current->qoute_type != 2)
 		{
-			set_var_name_paste_list(token_iter, paste_list);
-			get_env_len(count_token_len, envs_list);// i have to give the var name
+			to_free = current;
+			current = current->next;
+			if (prev)
+			{
+				prev->next = current;
+			}
+			else
+				*token = current->next;
+			free(to_free);
 		}
 		else
-			token_iter++;
+			prev = current;
+			current = current->next;
 	}
 }
-
-void	set_var_name_paste_list(char *var_name, t_env_var *paste_list)
-{
-	char	*start;
-
-	start = var_name;
-	while (*var_name && (ft_isalpha(*var_name) || ft_isdigit(*var_name) || *var_name == '_'))
-                var_name++;
-
-}
-
-void	get_env_len(int len, t_env_var *paste_list)
-{
-	t_env_list	*iter_list;
-
-	iter_list = ft_bash()->list;
-	while (iter_list->next)
-	{
-		if (ft_strncmp(iter_list->name, paste_list->var,
-			ft_strlen(iter_list->name)))
-		{
-
-		}
-	}
-}
-*/

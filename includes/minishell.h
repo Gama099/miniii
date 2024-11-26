@@ -103,6 +103,7 @@ void		join_token_syblings(t_tokens **token);
 //parser
 
 int	is_spaces(char *str);
+void	clean_list_spaces(t_tokens **token);
 
 // builtins
 void		print_export(t_env_list *list);
